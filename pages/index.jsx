@@ -1,24 +1,21 @@
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { useState } from "react";
 
 export default function Home() {
-  const [name, setName] = useState("");
-  const router = useRouter();
+  const [username, setUsername] = useState("");
   return (
     <div>
-      <button type="button" onClick={() => router.push("/tomato")}>
-        tomato로 가기
-      </button>
-      <p>이름</p>
-      <input
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        style={{ marginRight: "12px" }}
-      ></input>
-      <button type="button" onClick={() => router.push(`/vegetable/${name}`)}>
-        {name}으로 가기
-      </button>
+      <label>
+        username
+        <input
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        ></input>
+      </label>
+      <p>{username} 깃허브 검색하기</p>
+      <Link href={`/users/${username}`}>
+        <a>검색하기</a>
+      </Link>
     </div>
   );
 }
